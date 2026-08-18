@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkflowRouteImport } from './routes/workflow'
+import { Route as TrackTrackSlugRouteImport } from './routes/track.$trackSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkflowRoute = WorkflowRouteImport.update({
+  id: '/workflow',
+  path: '/workflow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackTrackSlugRoute = TrackTrackSlugRouteImport.update({
+  id: '/track/$trackSlug',
+  path: '/track/$trackSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/workflow': typeof WorkflowRoute
+  '/track/$trackSlug': typeof TrackTrackSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/workflow': typeof WorkflowRoute
+  '/track/$trackSlug': typeof TrackTrackSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/workflow': typeof WorkflowRoute
+  '/track/$trackSlug': typeof TrackTrackSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/workflow' | '/track/$trackSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/workflow' | '/track/$trackSlug'
+  id: '__root__' | '/' | '/workflow' | '/track/$trackSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WorkflowRoute: typeof WorkflowRoute
+  TrackTrackSlugRoute: typeof TrackTrackSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workflow': {
+      id: '/workflow'
+      path: '/workflow'
+      fullPath: '/workflow'
+      preLoaderRoute: typeof WorkflowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track/$trackSlug': {
+      id: '/track/$trackSlug'
+      path: '/track/$trackSlug'
+      fullPath: '/track/$trackSlug'
+      preLoaderRoute: typeof TrackTrackSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WorkflowRoute: WorkflowRoute,
+  TrackTrackSlugRoute: TrackTrackSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
