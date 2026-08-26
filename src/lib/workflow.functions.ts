@@ -23,8 +23,12 @@ const schema = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["title", "description"],
-        properties: { title: { type: "string" }, description: { type: "string" } },
+        required: ["title", "description", "substeps"],
+        properties: {
+          title: { type: "string" },
+          description: { type: "string" },
+          substeps: { type: "array", minItems: 3, maxItems: 5, items: { type: "string" } },
+        },
       },
     },
     pitfalls: {
