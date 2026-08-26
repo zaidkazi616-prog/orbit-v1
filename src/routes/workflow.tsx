@@ -128,6 +128,16 @@ function WorkflowPage() {
                       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                         {step.description}
                       </p>
+                      {step.substeps?.length ? (
+                        <ul className="mt-3 space-y-1.5 border-l border-border pl-4">
+                          {step.substeps.map((sub, j) => (
+                            <li key={j} className="flex gap-2 text-sm text-foreground/85">
+                              <span className="mt-[3px] size-1.5 shrink-0 rounded-full bg-primary/70" />
+                              <span className="font-mono text-[13px] leading-relaxed">{sub}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                     </div>
                   </div>
                 </li>
