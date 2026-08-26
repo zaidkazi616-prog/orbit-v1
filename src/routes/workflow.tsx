@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Check, Download, Loader2, X } from "lucide-react";
+import { ArrowLeft, Check, FileDown, Loader2, X } from "lucide-react";
 import { z } from "zod";
 import { generateWorkflow } from "@/lib/workflow.functions";
 import { difficultyClass } from "@/lib/library";
-import { downloadMarkdown } from "@/lib/workflow-types";
+import { downloadPdf } from "@/lib/workflow-types";
 
 const searchSchema = z.object({
   idea: z.string().catch(""),
