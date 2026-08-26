@@ -99,12 +99,12 @@ export async function downloadPdf(w: Workflow) {
   // Header
   text(w.title, { size: 22, style: "bold", gap: 6 });
 
-  const diffColor: Record<string, [number, number, number]> = {
+  const diffColor: Record<Workflow["difficulty"], [number, number, number]> = {
     Easy: [22, 128, 96],
     Medium: [180, 120, 20],
     Hard: [190, 55, 55],
   };
-  const dc = diffColor[w.difficulty] ?? diffColor.Medium;
+  const dc: [number, number, number] = diffColor[w.difficulty] ?? [180, 120, 20];
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
   const label = w.difficulty.toUpperCase();
