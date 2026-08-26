@@ -91,10 +91,10 @@ function WorkflowPage() {
               <p className="mt-3 max-w-2xl text-muted-foreground">{data.summary}</p>
             </div>
             <button
-              onClick={() => downloadMarkdown(data)}
+              onClick={() => downloadPdf(data)}
               className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/20"
             >
-              <Download className="size-4" /> Download
+              <FileDown className="size-4" /> Download PDF
             </button>
           </div>
 
